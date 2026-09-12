@@ -55,6 +55,19 @@ describe('parseArgs', () => {
     expect(() => parseArgs(['--min-nodes', '-1'])).toThrow(CliError);
   });
 
+  it('rejects empty or whitespace-only count values', () => {
+    expect(() => parseArgs(['--min-lines', ''])).toThrow(CliError);
+    expect(() => parseArgs(['--min-nodes', '   '])).toThrow(CliError);
+  });
+
+  it('rejects non-decimal count values', () => {
+    expect(() => parseArgs(['--min-nodes', '0x10'])).toThrow(CliError);
+  });
+
+  it('rejects non-decimal threshold values', () => {
+    expect(() => parseArgs(['--threshold', '0x.8'])).toThrow(CliError);
+  });
+
   it('rejects bad formats', () => {
     expect(() => parseArgs(['--format', 'edn'])).toThrow(CliError);
   });

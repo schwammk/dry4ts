@@ -66,16 +66,16 @@ function parseThreshold(raw: string): number {
     throw new CliError('--threshold must be a number in [0,1]');
   }
   const value = Number(trimmed);
-  if (!Number.isFinite(value) || value < 0 || value > 1) {
+  if (!/^-?\d+(\.\d+)?$/.test(trimmed) || !Number.isFinite(value) || value < 0 || value > 1) {
     throw new CliError('--threshold must be a number in [0,1]');
   }
   return value;
 }
 
 function parseCount(raw: string, flag: string): number {
-  const value = Number(raw.trim());
-  if (!Number.isInteger(value) || value < 0) {
+  const trimmed = raw.trim();
+  if (trimmed === '' || !/^\d+$/.test(trimmed)) {
     throw new CliError(`${flag} must be a non-negative integer`);
   }
-  return value;
+  return Number(trimmed);
 }
