@@ -12,7 +12,7 @@ export function beta(n: number): number {
   const offset = 10;
   const scaled = doubled * offset;
   const shifted = scaled + offset;
-  const floored = shifted - 1;
-  const capped = floored > 100 ? 100 : floored;
+  const floored = shifted - doubled;
+  const capped = shifted > 100 ? 100 : shifted;
   return capped - doubled;
 }
