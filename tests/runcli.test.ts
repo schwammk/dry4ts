@@ -72,6 +72,8 @@ describe('runCli', () => {
             e.left.name === name || e.right.name === name
         )
         .map((e: { score: number }) => e.score);
+    expect(anchorScores('alpha').length).toBeGreaterThan(0);
+    expect(anchorScores('renderA').length).toBeGreaterThan(0);
     for (const score of anchorScores('alpha')) {
       expect(score).toBeGreaterThan(0.82);
       expect(score).toBeLessThan(1);
