@@ -1,0 +1,18 @@
+{
+  "name": "dry4ts",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": { "dry4ts": "dist/cli.js" },
+  "engines": { "node": ">=20" },
+  "dependencies": { "typescript": ">=5 <6" },
+  "devDependencies": {
+    "@types/node": "^20",
+    "vitest": "^3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "dry": "npm run build && node dist/cli.js --source-root src --threshold 0.82"
+  }
+}
